@@ -9,8 +9,6 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://damianmichalik.github.io",
-  base: "astro-app",
   integrations: [react(), mdx()],
 
   vite: {
