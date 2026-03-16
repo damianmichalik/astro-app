@@ -1,0 +1,41 @@
+---
+title: "A Photo Gallery Built with Islands Architecture"
+date: 2024-03-10
+description: "Demonstrating Astro's Islands Architecture with an interactive React image gallery embedded in a static blog post."
+---
+
+import ImageGallery from "../../components/ImageGallery";
+
+# A Photo Gallery Built with Islands Architecture
+
+This post demonstrates how Astro's **Islands Architecture** works in practice. Everything you're reading right now — the layout, the text, the styles — is **pure static HTML**. Zero JavaScript was loaded to render it.
+
+The gallery below is the island: a React component that ships its own JavaScript bundle and hydrates independently, without affecting the rest of the page.
+
+## How it works
+
+With MDX, the component is imported and placed directly in the post body — no frontmatter tricks, no logic in `[slug].astro`:
+
+```mdx
+import ImageGallery from "../../components/ImageGallery";
+
+<ImageGallery client:visible images={[...]} />
+```
+
+The `client:visible` directive tells Astro to defer hydration until the gallery scrolls into the viewport.
+
+## The Gallery
+
+Click any image to open the lightbox. Use the arrows to navigate.
+
+<ImageGallery
+  client:visible
+  images={[
+    { src: "/images/arch-1.svg", alt: "Mountain Vista" },
+    { src: "/images/arch-2.svg", alt: "Sunset Cityscape" },
+    { src: "/images/arch-3.svg", alt: "Forest Trail" },
+    { src: "/images/arch-4.svg", alt: "Milky Way" },
+    { src: "/images/arch-5.svg", alt: "Abstract Geometry" },
+    { src: "/images/arch-6.svg", alt: "Desert Dunes" },
+  ]}
+/>

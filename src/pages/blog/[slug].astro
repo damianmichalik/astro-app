@@ -1,0 +1,59 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const author = post.data.author ? await getEntry(post.data.author) : null;
+---
+
+<Layout title={post.data.title}>
+  <Fragment slot="head">
+    <meta name="description" content={post.data.description} />
+    <meta property="og:title" content={post.data.title} />
+    <meta property="og:description" content={post.data.description} />
+    <meta property="og:type" content="article" />
+  </Fragment>
+  <div class="max-w-2xl mx-auto px-4 py-12">
+    <a href="/blog" class="text-indigo-400 text-sm hover:underline mb-6 inline-block">← Back to Blog</a>
+    <p class="text-slate-500 text-sm mb-8">
+      {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+    </p>
+
+    <div class="prose prose-invert prose-slate max-w-none
+      prose-headings:text-slate-100
+      prose-p:text-slate-300 prose-p:leading-relaxed
+      prose-a:text-indigo-400
+      prose-strong:text-slate-100
+      prose-code:bg-slate-800 prose-code:border prose-code:border-slate-700 prose-code:rounded prose-code:px-1
+      prose-pre:bg-slate-800 prose-pre:border prose-pre:border-slate-700">
+      <Content />
+    </div>
+
+    {author && (
+      <a
+        href={`/authors/${author.id}`}
+        class="mt-12 pt-8 border-t border-slate-800 flex items-center gap-4 no-underline group"
+      >
+        <img
+          src={author.data.avatar}
+          alt={author.data.name}
+          class="w-14 h-14 rounded-full object-cover group-hover:ring-2 group-hover:ring-indigo-400 transition-all"
+        />
+        <div>
+          <p class="font-semibold text-slate-100 group-hover:text-indigo-400 transition-colors">{author.data.name}</p>
+          <p class="text-slate-400 text-sm">{author.data.bio}</p>
+        </div>
+      </a>
+    )}
+  </div>
+</Layout>

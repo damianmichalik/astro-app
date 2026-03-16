@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#1e293b"/>
+  <rect x="80" y="80" width="640" height="340" rx="12" fill="#334155"/>
+  <rect x="120" y="120" width="240" height="160" rx="8" fill="#6366f1"/>
+  <rect x="390" y="120" width="240" height="160" rx="8" fill="#8b5cf6"/>
+  <rect x="120" y="300" width="510" height="80" rx="8" fill="#475569"/>
+  <text x="400" y="460" font-family="system-ui" font-size="20" fill="#94a3b8" text-anchor="middle">Mountain Vista — Canon EOS R5</text>
+</svg>

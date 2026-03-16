@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#fef3c7"/>
+  <rect x="0" y="300" width="800" height="200" fill="#92400e"/>
+  <circle cx="400" cy="180" r="100" fill="#f59e0b"/>
+  <path d="M 0 300 Q 200 260 400 300 Q 600 340 800 300 L 800 500 L 0 500 Z" fill="#78350f"/>
+  <rect x="370" y="200" width="60" height="100" rx="4" fill="#92400e"/>
+  <text x="400" y="460" font-family="system-ui" font-size="20" fill="#fef3c7" text-anchor="middle">Desert Dunes — Leica M11</text>
+</svg>
