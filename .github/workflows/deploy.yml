@@ -25,8 +25,27 @@ jobs:
           name: dist
           path: dist/
 
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - TODO: add VPS deploy step
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Deploy to VPS
+        run: |
+          echo "$SSH_PRIVATE_KEY" > /tmp/deploy_key
+          chmod 600 /tmp/deploy_key
+          rsync -az --delete \
+            -e "ssh -i /tmp/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=no" \
+            dist/ \
+            $SSH_USER@$SSH_HOST:$DEPLOY_PATH
+          rm /tmp/deploy_key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          DEPLOY_PATH: /var/www/blog
