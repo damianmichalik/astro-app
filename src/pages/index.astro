@@ -1,30 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-const title = "My Astro App";
-const features = ["Fast by default", "Zero JS by default", "Easy to use"];
 ---
 
-<Layout title={title}>
-  <div class="flex flex-col items-center justify-center min-h-screen p-8">
-    <div class="text-center max-w-xl">
-      <h1 class="text-5xl font-extrabold bg-gradient-to-br from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-4">
-        {title}
-      </h1>
-      <p class="text-slate-400 text-xl mb-8">A simple page built with the Astro framework.</p>
-      <ul class="flex flex-col gap-3 mb-8">
-        {features.map((f) => (
-          <li class="bg-slate-800 border border-slate-700 rounded-lg px-6 py-3 text-left">
-            <span class="text-indigo-400 font-bold">✓ </span>{f}
-          </li>
-        ))}
-      </ul>
-      <a
-        href="/blog"
-        class="inline-block px-8 py-3 bg-gradient-to-br from-indigo-400 to-purple-400 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
-      >
-        Read the Blog →
-      </a>
-    </div>
+<Layout title="damianmichalik.pl">
+  <div class="flex items-center justify-center min-h-screen">
+    <h1 class="text-5xl font-extrabold bg-gradient-to-br from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+      damianmichalik.pl
+    </h1>
   </div>
 </Layout>
