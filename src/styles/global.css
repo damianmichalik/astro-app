@@ -1,18 +1,2 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(8px); }
-}
-
-@keyframes fade-out {
-  to { opacity: 0; transform: translateY(-8px); }
-}
-
-::view-transition-old(root) {
-  animation: 150ms ease-in fade-out;
-}
-
-::view-transition-new(root) {
-  animation: 200ms ease-out fade-in;
-}
